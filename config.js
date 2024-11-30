@@ -30,11 +30,11 @@ global.APIKeys = { // APIKey Here
 //*Sisked Good Datos*
 
 global.packname = `𝙎𝙄𝙎𝙆𝙀𝘿 𝘽𝙊𝙏`
-global.author = '{\n "bot": {\n   "name": "𝙎𝙄𝙎𝙆𝙀𝘿 𝘽𝙊𝙏",\n     "author": "Anuar",\n   "status_bot": "active"\n }\n}'
+global.author = '𝙎𝙄𝙎𝙆𝙀𝘿 - 𝙂𝙊𝙊𝘿'
 global.wait = '𝙎𝙄𝙎𝙆𝙀𝘿 𝘽𝙊𝙏'
 global.botname = '𝙎𝙄𝙎𝙆𝙀𝘿 𝘽𝙊𝙏'
-global.textbot = `Super Bot De WhatsApp ⭐`
-global.listo = 'Completado ✯'
+global.textbot = `𝙐𝙉𝙇𝙄𝙈𝙄𝙏𝙀𝘿 𝙋𝙊𝙒𝙀𝙍`
+global.listo = '𝙎𝙋𝙀𝙀𝘿-𝙓'
 global.namechannel = '「  𝑺𝑰𝑺𝑲𝑬𝑫 - 𝑪𝑯𝑨𝑵𝑬𝑳  」'
 global.baileys = '@whiskeysockets/baileys'
 
