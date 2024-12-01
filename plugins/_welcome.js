@@ -24,7 +24,7 @@ export async function before(m, { conn, participants, groupMetadata }) {
           body: '𝙋𝙊𝙒𝙀𝙍 𝙄𝘼',
           mediaUrl: pp,
           mediaType: 2,
-          thumbnailUrl: 'https://i.ibb.co/9TcdDGx/file.jpg',
+          thumbnailUrl: 'https://i.ibb.co/qDmsnBq/file.jpg',
           thumbnail: img
         }
       },
@@ -49,7 +49,7 @@ export async function before(m, { conn, participants, groupMetadata }) {
           body: '𝙋𝙊𝙒𝙀𝙍 𝙄𝘼',
           mediaUrl: pp,
           mediaType: 2,
-          thumbnailUrl: 'https://i.ibb.co/9TcdDGx/file.jpg',
+          thumbnailUrl: 'https://i.ibb.co/qDmsnBq/file.jpg',
           thumbnail: img
         }
       },
@@ -74,7 +74,7 @@ export async function before(m, { conn, participants, groupMetadata }) {
           body: '𝙋𝙊𝙒𝙀𝙍 𝙄𝘼',
           mediaUrl: pp,
           mediaType: 2,
-          thumbnailUrl: 'https://i.ibb.co/9TcdDGx/file.jpg',
+          thumbnailUrl: 'https://i.ibb.co/qDmsnBq/file.jpg',
           thumbnail: img
         }
       },
