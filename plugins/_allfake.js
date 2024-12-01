@@ -18,7 +18,7 @@ let img = catalogo
 					mediaUrl: null,
 					description: null,
 					previewType: "PHOTO",
-					thumbnailUrl: 'https://qu.ax/FNsw.jpg',
+					thumbnailUrl: 'https://i.ibb.co/qDmsnBq/file.jpg',
 		           sourceUrl: canal,
 		           mediaType: 1,
                    renderLargerThumbnail: false
@@ -59,7 +59,7 @@ showAdAttribution: true,
 title: '𝙎𝙄𝙎𝙆𝙀𝘿 𝘽𝙊𝙏',
 body: 'Super Bot de WhatsApp ⭐',
 previewType: "PHOTO",
-thumbnailUrl: 'https://i.ibb.co/qBxdwZW/file.jpg',
+thumbnailUrl: 'https://i.ibb.co/qDmsnBq/file.jpg',
 sourceUrl: 'https://www.instagram.com/sisked_1',
 mediaType: 1,
 renderLargerThumbnail: false
