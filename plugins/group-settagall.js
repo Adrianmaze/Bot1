@@ -11,4 +11,5 @@ m.reply('𝘼𝙜𝙧𝙚𝙜𝙖 𝙚𝙡 𝙀𝙢𝙤𝙟𝙞');
 handler.command = ['emotag']
 handler.help = ['emotag < emoji >']
 handler.tags = ['group']
+handler.admin = true;
 export default handler
