@@ -121,3 +121,4 @@ function secondString(seconds) {
   const mDisplay = m > 0 ? m + (m == 1 ? ' Minuto, ' : ' Minutos, ') : '';
   const sDisplay = s > 0 ? s + (s == 1 ? ' Segundo' : ' Segundos') : '';
   return d
+      
