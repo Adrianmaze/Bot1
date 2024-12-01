@@ -100,7 +100,7 @@ let texto = `*_M E N Ú - A U D I O S_* 🗣️
 93. _Ara Ara_.
 94. _Audio Hentai_.
 95. _Bien Pensado Woody_.
-96. _Lo Palpamos_.
+96. _Lo Paltimos_.
  `
 
 const fkontak = {
