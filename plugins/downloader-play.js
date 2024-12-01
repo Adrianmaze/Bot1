@@ -68,8 +68,7 @@ function eYear(txt) {
 }
 
 // Función para descargar el archivo de audio (mp3) de YouTube
-
-handler.customPrefix = /^(Audio|audio)/
+handler.command = ['audio', 'Audio']
 
 handler.tags = ['downloader']
 
