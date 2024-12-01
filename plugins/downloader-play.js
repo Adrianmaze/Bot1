@@ -68,8 +68,9 @@ function eYear(txt) {
 }
 
 // Función para descargar el archivo de audio (mp3) de YouTube
-handler.command = ['audio', 'Audio']
-
+handler.customPrefix = /^(Audio|audio)/
+handler.command = new RegExp
+handler.help = ['audio']
 handler.tags = ['downloader']
 
 handler.handler = async (m, { conn, text }) => {
