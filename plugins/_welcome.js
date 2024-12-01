@@ -37,7 +37,7 @@ export async function before(m, { conn, participants, groupMetadata }) {
 
   if (chat.bienvenida && m.messageStubType == 28) {
     let user = `@${m.messageStubParameters[0].split`@`[0]}`
-    let text = chat.sBye || `┌─• 𝙎𝙄𝙎𝙆𝙀𝘿-𝘽𝙊𝙏 \n│「 ADIOS 👋 」\n└┬• 「 @${user} 」\n   │😂  Se fue\n   │👋🏻 Jamás te quisimos aquí\n   └───────────────┈ ⳹`
+    let text = chat.sBye || `┌─• 𝙎𝙄𝙎𝙆𝙀𝘿-𝘽𝙊𝙏 \n│「 ADIOS 👋 」\n└┬• 「 ${user} 」\n   │😂  Se fue\n   │👋🏻 Jamás te quisimos aquí\n   └───────────────┈ ⳹`
 
     let message = {
       caption: text,  // Aquí va el texto que acompañará a la imagen
@@ -62,7 +62,7 @@ export async function before(m, { conn, participants, groupMetadata }) {
 
   if (chat.bienvenida && m.messageStubType == 32) {
     let user = `@${m.messageStubParameters[0].split`@`[0]}`
-    let text = chat.sBye || `┌─• 𝙎𝙄𝙎𝙆𝙀𝘿-𝘽𝙊𝙏 \n│「 ADIOS 👋 」\n└┬• 「 @${user} 」\n   │😂  Se fue\n   │👋🏻 Jamás te quisimos aquí\n   └───────────────┈ ⳹`
+    let text = chat.sBye || `┌─• 𝙎𝙄𝙎𝙆𝙀𝘿-𝘽𝙊𝙏 \n│「 ADIOS 👋 」\n└┬• 「 ${user} 」\n   │😂  Se fue\n   │👋🏻 Jamás te quisimos aquí\n   └───────────────┈ ⳹`
 
     let message = {
       caption: text,  // Aquí va el texto que acompañará a la imagen
