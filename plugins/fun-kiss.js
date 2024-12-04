@@ -19,7 +19,6 @@ let handler = async (m, { conn, usedPrefix }) => {
         const chat = await message.getChat();
         chat.sendMessage('¡Te mando un beso! 💋', { media: fs.createReadStream(randomVideo) });
     }
-}); 
 handler.help = ['besar @tag'];
 handler.tags = ['fun'];
 handler.command = ['kiss', 'beso', 'besar'];
