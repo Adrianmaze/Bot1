@@ -56,9 +56,9 @@ let texto = `*_M E N Ú - A U D I O S_* 🗣️
 49. _Homero Chino_.
 50. _Hora de Sexo_.
 51. _In Your Area_.
-52. _Juicioso_.
+52. 𝘊𝘰𝘮𝘱𝘰𝘳𝘵𝘢𝘵𝘦.
 53. _La Oracion_.
-54. _Lo Palpamos_.
+54. 𝘏𝘪𝘫𝘰𝘴 𝘥𝘦 𝘗𝘶𝘵𝘢.
 55. _Ma Ma Masivo_.
 56. _Maldito Teni_.
 57. _Marica Tu_.
