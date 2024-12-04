@@ -1,4 +1,7 @@
-const fs = require('fs');
+import fs from 'fs';
+import path from 'path';
+import uploadImage from '../lib/uploadImage.js'
+import { sticker } from '../lib/sticker.js';
 
 // Lista de videos (asegúrate de que estén en la ruta correcta)
 const videoList = [
