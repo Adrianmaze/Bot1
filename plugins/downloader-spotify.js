@@ -51,5 +51,4 @@ const dps = await fetch(`https://rest.cifumo.biz.id/api/downloader/spotify-dl?ur
 handler.help = ["spotify *<consulta>*"]
 handler.tags = ["downloader"]
 handler.command = /^(spotify|splay)$/i
-handler.limit = true
 export default handler
