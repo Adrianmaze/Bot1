@@ -19,3 +19,6 @@ client.on('message', async (message) => {
         chat.sendMessage('¡Te mando un beso! 💋', { media: fs.createReadStream(randomVideo) });
     }
 }); 
+handler.help = ['besar @tag'];
+handler.tags = ['fun'];
+handler.command = ['kiss', 'beso', 'besar'];
