@@ -11,9 +11,7 @@ const videoList = [
 ];
 
 // Escuchar mensajes
-client.on('message', async (message) => {
-    // Verificar si el mensaje es el comando ".besar"
-    if (message.body.toLowerCase() === '.besar') {
+let handler = async (m, { conn, usedPrefix }) => {
         // Escoger un video aleatorio de la lista
         const randomVideo = videoList[Math.floor(Math.random() * videoList.length)];
 
