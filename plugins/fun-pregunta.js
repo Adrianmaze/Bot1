@@ -9,7 +9,7 @@ await delay(1000 * 1)
 await m.react('❔')
 await delay(1000 * 1)
 
-await conn.reply(m.chat, + dev + `\n\n•*Pregunta:* ` + text + `\n• *Respuesta:* ` + res, m, rcanal)
+await conn.reply(m.chat, + m.dev + `\n\n•*Pregunta:* ` + text + `\n• *Respuesta:* ` + res, m, rcanal)
 
 }
 handler.help = ['pregunta']
