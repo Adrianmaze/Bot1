@@ -9,19 +9,21 @@ export async function before(m, { conn, participants, groupMetadata }) {
   let img = await (await fetch(pp)).buffer()
   
   let chat = global.db.data.chats[m.chat]
+  let welcome = ''
+  let bye = ''
 
   if (chat.bienvenida && m.messageStubType == 27) {
     if (chat.sWelcome){
       let user = `@${m.messageStubParameters[0].split`@`[0]}`
-      let text = chat.sWelcome
+      welcome = chat.sWelcome
         .replace('@user', () => user)
         .replace('@group', () => groupMetadata.subject)
         .replace('@desc', () => groupMetadata.desc || 'sin descripción');
     } else {
     let user = `@${m.messageStubParameters[0].split`@`[0]}`
-    let text = `┌─• 𝙎𝙄𝙎𝙆𝙀𝘿-𝘽𝙊𝙏 \n│「 Bienvenido 」\n└┬• 「 ${user} 」\n   │🌪️  Bienvenido a\n   │🚩  ${groupMetadata.subject}\n   │🩸  Descripción:\n${groupMetadata.desc || 'sin descripción'}\n   └───────────────┈ ⳹`
+    welcome = `┌─• 𝙎𝙄𝙎𝙆𝙀𝘿-𝘽𝙊𝙏 \n│「 Bienvenido 」\n└┬• 「 ${user} 」\n   │🌪️  Bienvenido a\n   │🚩  ${groupMetadata.subject}\n   │🩸  Descripción:\n${groupMetadata.desc || 'sin descripción'}\n   └───────────────┈ ⳹`
     }
-    
+    let text = welcome
     let message = {
       caption: text,  // Aquí va el texto que acompañará a la imagen
       mentions: [m.messageStubParameters[0]],
@@ -46,15 +48,15 @@ export async function before(m, { conn, participants, groupMetadata }) {
   if (chat.bienvenida && m.messageStubType == 28) {
     if (chat.sBye) {
           let user = `@${m.messageStubParameters[0].split`@`[0]}`
-      let text = chat.sBye
+      bye = chat.sBye
         .replace('@user', () => user)
         .replace('@group', () => groupMetadata.subject)
         .replace('@desc', () => groupMetadata.desc || 'sin descripción');
     } else {
     let user = `@${m.messageStubParameters[0].split`@`[0]}`
-    let text = `┌─• 𝙎𝙄𝙎𝙆𝙀𝘿-𝘽𝙊𝙏 \n│「 ADIOS 👋 」\n└┬• 「 ${user} 」\n   │😂  Se fue\n   │👋🏻 Jamás te quisimos aquí\n   └───────────────┈ ⳹`
+    bye = `┌─• 𝙎𝙄𝙎𝙆𝙀𝘿-𝘽𝙊𝙏 \n│「 ADIOS 👋 」\n└┬• 「 ${user} 」\n   │😂  Se fue\n   │👋🏻 Jamás te quisimos aquí\n   └───────────────┈ ⳹`
     }
-    
+    let text = bye
     let message = {
       caption: text,  // Aquí va el texto que acompañará a la imagen
       mentions: [m.messageStubParameters[0]],
