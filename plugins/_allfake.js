@@ -56,7 +56,7 @@ newsletterName: '「  𝑺𝑰𝑺𝑲𝑬𝑫 - 𝑪𝑯𝑨𝑵𝑬𝑳  」',
 },
 externalAdReply: { 
 showAdAttribution: true,
-title: 'global.packname',
+title: '𝚂𝙸𝚂𝙺𝙴𝙳 𝙱𝙾𝚃-𝙼𝙳',
 body: '𝚂𝚞𝚙𝚎𝚛 𝙱𝚘𝚝 𝚍𝚎 𝚆𝚑𝚊𝚝𝚜𝙰𝚙𝚙 ⭐',
 previewType: "PHOTO",
 thumbnailUrl: 'https://i.ibb.co/qDmsnBq/file.jpg',
