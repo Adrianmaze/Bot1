@@ -24,6 +24,17 @@ const handler = async (m, { conn, command, text, usedPrefix }) => {
         description = `💗 Los cálculos han arrojado que ${text.toUpperCase()} es *${percentages}%* ${command} ${emoji}\n> ✰ Mantén el amor floreciendo!`;
       }
       break;
+      case 'peruano':
+      case 'peruana':
+      emoji = '🇵🇪';
+      if (percentages < 50) {
+        description = `🤢 Los cálculos han arrojado que ${text.toUpperCase()} es *${percentages}%* ${command} ${emoji}\n> ✰ Despegala De Aqui Cacorro!`;
+      } else if (percentages > 100) {
+        description = `🤮 Los cálculos han arrojado que ${text.toUpperCase()} es *${percentages}%* ${command} ${emoji}\n> ✰ Despegala De Aqui Cacorro!`;
+      } else {
+        description = `🤢 Los cálculos han arrojado que ${text.toUpperCase()} es *${percentages}%* ${command} ${emoji}\n> ✰ Cacorro, Cachon y Peruano 🇵🇪 .`;
+      }
+      break;
     case 'pajero':
     case 'pajera':
       emoji = '😏💦';
@@ -109,8 +120,8 @@ var hawemod = [
  }
 loading()    
 };
-handler.help = ['gay <@tag> | <nombre>', 'lesbiana <@tag> | <nombre>', 'pajero <@tag> | <nombre>', 'pajera <@tag> | <nombre>', 'puto <@tag> | <nombre>', 'puta <@tag> | <nombre>', 'manco <@tag> | <nombre>', 'manca <@tag> | <nombre>', 'rata <@tag> | <nombre>', 'prostituta <@tag> | <nombre>', 'prostituto <@tag> | <nombre>'];
+handler.help = ['gay <@tag> | <nombre>', 'lesbiana <@tag> | <nombre>', 'pajero <@tag> | <nombre>', 'peruano <@tag> | <nombre>', 'peruana <@tag> | <nombre>', 'pajera <@tag> | <nombre>', 'puto <@tag> | <nombre>', 'puta <@tag> | <nombre>', 'manco <@tag> | <nombre>', 'manca <@tag> | <nombre>', 'rata <@tag> | <nombre>', 'prostituta <@tag> | <nombre>', 'prostituto <@tag> | <nombre>'];
 handler.tags = ['fun'];
 handler.group = true;
-handler.command = ['gay', 'lesbiana', 'pajero', 'pajera', 'puto', 'puta', 'manco', 'manca', 'rata', 'prostituta', 'prostituto'];
+handler.command = ['gay', 'peruano', 'peruana', 'lesbiana', 'pajero', 'pajera', 'puto', 'puta', 'manco', 'manca', 'rata', 'prostituta', 'prostituto'];
 export default handler;
