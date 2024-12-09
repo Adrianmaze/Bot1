@@ -1,10 +1,23 @@
 import axios from 'axios';
 import fetch from 'node-fetch';
+import fs from 'fs'; // Asegúrate de importar 'fs' para poder leer archivos
+
 const handler = async (m, {command, conn}) => {
-  const datas = global
-    const idioma = datas.db.data.users[m.sender].language || global.defaultLenguaje
-    const _translate = JSON.parse(fs.readFileSync(`./src/languages/${idioma}.json`))
-    const tradutor = _translate.plugins.adult_comandos
+  const datas = global;
+  const idioma = datas.db.data.users[m.sender].language || global.defaultLenguaje || 'es'; // Establecer un valor predeterminado 'es'
+  const path = `./src/languages/${idioma}.json`;
+
+  // Verificar si el archivo existe
+  if (!fs.existsSync(path)) {
+    console.error(`El archivo ${path} no se encuentra.`);
+    return; // Salir del handler si el archivo no existe
+  }
+
+  const _translate = JSON.parse(fs.readFileSync(path));
+  const tradutor = _translate.plugins.adult_comandos;
+
+  if (!datas.db.data.chats[m.chat].modohorny && m.isGroup) throw tradutor.texto1;
+
 
   if (!db.data.chats[m.chat].modohorny && m.isGroup) throw tradutor.texto1;
 
@@ -96,7 +109,7 @@ const handler = async (m, {command, conn}) => {
     const url = await res[Math.floor(res.length * Math.random())];
     conn.sendMessage(m.chat, {image: {url: url}, caption: `_${command}_`.trim()}, {quoted: m});
   }
-};
+}
 handler.help = ['nsfwloli', 'panties', 'tetas', 'booty', 'ecchi', 'furro', 'hentai', 'trapito', 'imagenlesbians', 'pene', 'porno', 'randomxxx', 'pechos'];
 handler.command = ['nsfwloli', 'panties', 'tetas', 'booty', 'ecchi', 'furro', 'hentai', 'trapito', 'imagenlesbians', 'pene', 'porno', 'randomxxx', 'pechos'];
 handler.tags = ['nsfw'];
