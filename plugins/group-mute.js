@@ -1,29 +1,25 @@
- https://github.com/MoonContentCreator/BixbyBot-Md **/
+/** By @MoonContentCreator || https://github.com/MoonContentCreator/BixbyBot-Md **/
 
-import fetch from 'node-fetch';
+const fetch = require('node-fetch');
 
 // Función principal del handler
 const handler = async (_m, { conn, command, text, isAdmin }) => {
-    // Verifica si el comando es "mute"
     if (command === 'mute') {
         if (!isAdmin) {
             throw '💌 *Solo un administrador puede ejecutar este comando*';
         }
 
         const ownerId = global.owner[0][0] + '@s.whatsapp.net';
-
-        // Verifica si se está intentando mutar al propietario
         if (_m.mentionedJid[0] === ownerId) {
             throw '🚩 *El creador del bot no puede ser mutado*';
         }
 
-        let target = _m.mentionedJid[0] 
-                     ? _m.mentionedJid[0] 
-                     : _m.quoted 
-                     ? _m.quoted.sender 
-                     : text;
+        let target = _m.mentionedJid[0]
+            ? _m.mentionedJid[0]
+            : _m.quoted
+            ? _m.quoted.sender
+            : text;
 
-        // No se puede mutar al bot
         if (target === conn.user.jid) {
             throw '🚩 *No puedes mutar el bot*';
         }
@@ -31,9 +27,8 @@ const handler = async (_m, { conn, command, text, isAdmin }) => {
         const groupMetadata = await conn.groupMetadata(_m.chat);
         const groupOwnerId = groupMetadata.owner || _m.chat.split('-')[0] + '@s.whatsapp.net';
 
-        // Verifica si el objetivo es el creador del grupo
         if (target === groupOwnerId) {
-            throw '🚩 *No puedes mutar el creador del grupo*';
+            throw '🚩 *No puedes mutar al creador del grupo*';
         }
 
         let user = global.db.data.users[target];
@@ -49,7 +44,7 @@ const handler = async (_m, { conn, command, text, isAdmin }) => {
             participant: '0@s.whatsapp.net'
         };
 
-        if (_m.mentionedJid[0] === undefined && !_m.quoted) {
+        if (!target && !_m.quoted) {
             return conn.reply(_m.chat, '🚩 *Menciona a la persona que deseas mutar*', _m);
         }
 
@@ -62,17 +57,16 @@ const handler = async (_m, { conn, command, text, isAdmin }) => {
         });
 
         global.db.data.users[target].muted = true;
-
     } else if (command === 'unmute') {
         if (!isAdmin) {
             throw '💌 *Solo un administrador puede ejecutar este comando*';
         }
 
         let target = _m.mentionedJid[0]
-                     ? _m.mentionedJid[0]
-                     : _m.quoted
-                     ? _m.quoted.sender
-                     : text;
+            ? _m.mentionedJid[0]
+            : _m.quoted
+            ? _m.quoted.sender
+            : text;
 
         let user = global.db.data.users[target];
         const locationMessage = {
@@ -91,7 +85,7 @@ const handler = async (_m, { conn, command, text, isAdmin }) => {
             throw '🚩 *No puedes desmutarte a ti mismo*';
         }
 
-        if (!_m.mentionedJid[0] && !_m.quoted) {
+        if (!target && !_m.quoted) {
             return conn.reply(_m.chat, '🚩 *Menciona a la persona que deseas desmutar*', _m);
         }
 
@@ -109,10 +103,9 @@ const handler = async (_m, { conn, command, text, isAdmin }) => {
 
 // Configuración del handler
 handler.command = ['mute', 'unmute'];
-handler.help = ['mute', 'unmute'];
-handler.tags = ['group'];
 handler.group = true;
 handler.admin = true;
 handler.botAdmin = true;
 
-export default handler;
+module.exports = handler; // Exportar en CommonJS
+                   
