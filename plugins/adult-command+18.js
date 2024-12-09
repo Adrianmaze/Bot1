@@ -2,9 +2,8 @@ import fs from 'fs';
 import path from 'path';
 
 let handler = async (m, { conn }) => {
-    // Verificar si el modo caliente está habilitado
-if (!global.db.data.chats[m.chat].nsfw) return m.reply(`El grupo no admite contenido *nsfw.*`)
-    }
+    // Verificar si el modo NSFW está habilitado
+    if (!global.db.data.chats[m.chat].nsfw) return m.reply(`El grupo no admite contenido *NSFW.*`);
 
     // Reacción actualizada
     m.react('🔥');
