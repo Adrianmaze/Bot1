@@ -75,5 +75,6 @@ handler.help = ['violar'];
 handler.tags = ['fun'];
 handler.command = ['violar', 'fuck'];
 handler.group = true;
+handler.admin = true;
 
 export default handler;
