@@ -1,11 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import config from './config.js'; // Suponiendo que config.js es donde está la configuración
 
 let handler = async (m, { conn }) => {
     // Verificar si el modo caliente está habilitado
-    if (!config.enable.modocaliente) {
-        return m.reply('🚫 El modo caliente no está activado.');
+if (!global.db.data.chats[m.chat].nsfw) return m.reply(`El grupo no admite contenido *Nsfw.*`)
     }
 
     // Reacción actualizada
