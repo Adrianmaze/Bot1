@@ -1,7 +1,13 @@
 import fs from 'fs';
 import path from 'path';
+import config from './config.js'; // Suponiendo que config.js es donde está la configuración
 
 let handler = async (m, { conn }) => {
+    // Verificar si el modo caliente está habilitado
+    if (!config.enable.modocaliente) {
+        return m.reply('🚫 El modo caliente no está activado.');
+    }
+
     // Reacción actualizada
     m.react('🔥');
 
