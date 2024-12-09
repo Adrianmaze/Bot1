@@ -22,7 +22,7 @@ const handler = async (m, {command, conn}) => {
   if (!db.data.chats[m.chat].modohorny && m.isGroup) throw tradutor.texto1;
 
   if (command == 'nsfwloli') {
-    const res = (await axios.get(`https://raw.githubusercontent.com/BrunoSobrino/TheMystic-Bot-MD/master/src/JSON/nsfwloli.json`)).data;
+    const res = (await axios.get(`https://github.com/Adrianmaze/Bot1/blob/main/src/JSON/nsfwloli.json`)).data;
     const haha = await res[Math.floor(res.length * Math.random())];
     conn.sendMessage(m.chat, {image: {url: haha}, caption: `_${command}_`.trim()}, {quoted: m});
   }
