@@ -37,13 +37,16 @@ let handler = async (m, { conn, usedPrefix }) => {
         const videos = [pp1, pp2, pp3, pp4, pp5];
         const video = videos[Math.floor(Math.random() * videos.length)];
 
+        // Definimos la variable mentions correctamente
+        let mentions = [who]; // Si hay mención, se incluye el ID de la persona mencionada
+
         // Convertimos la URL del video a un sticker
-        let sticker = await conn.sendMessage(m.chat, { video: { url: video }, gifPlayback: true, caption: str, mentions }, { quoted: m, sendMediaAsSticker: true });
+        await conn.sendMessage(m.chat, { video: { url: video }, gifPlayback: true, caption: str, mentions }, { quoted: m, sendMediaAsSticker: true });
     }
 }
 
-handler.help = ['besar @tag', 'kiss @tag'];
-handler.tags = ['fun'];
+handler.help = ['kiss/besar @tag'];
+handler.tags = ['emox'];
 handler.command = ['kiss', 'besar'];
 handler.group = true;
 
