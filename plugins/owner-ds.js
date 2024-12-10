@@ -1,44 +1,53 @@
 const fs = require('fs');
 const path = require('path');
+const { ownerid, botname } = require('../settings');
 
 module.exports = {
-    name: 'ds', // Nombre del comando principal
-    alias: ['deletesessions'], // Alias opcionales
-    description: 'Elimina archivos de la carpeta "sessions" excepto el importante "creds.json".',
-    category: 'propietario', // Categoría del comando
-    command: ['ds'], // Define el comando que activará esta función
-    owner: true, // Restringe el uso solo al propietario del bot
-    async execute(m, { isOwner }) {
-        // Verificar si el usuario tiene permisos de propietario
-        if (!isOwner) return m.reply('🚫 Solo el propietario puede usar este comando.');
+    command: 'ds',
+    handler: async (conn, { message }) => {
+        const from = message.key.remoteJid;
+        const sender = message.key.participant || from;
 
-        const pathToDirectory = './sessions';
+        if (sender !== ownerid) {
+            return await conn.sendMessage(from, {
+                text: `❌ Solo el *propietario* de ${botname} puede ejecutar este comando.`,
+            });
+        }
 
-        // Leer la carpeta "sessions"
-        fs.readdir(pathToDirectory, (err, files) => {
-            if (err) return m.reply(`❌ Error leyendo la carpeta: ${err.message}`);
+        try {
+            const sessionsPath = path.resolve(__dirname, '../sessions');
 
-            files.forEach(file => {
-                // Evitar eliminar el archivo "creds.json"
-                if (file !== 'creds.json') {
-                    const filePath = path.join(pathToDirectory, file);
-                    fs.unlink(filePath, err => {
-                        if (err) {
-                            console.error(`Error eliminando archivo ${file}: ${err.message}`);
-                        } else {
-                            console.log(`Archivo ${file} eliminado correctamente.`);
-                        }
-                    });
-                }
+            if (!fs.existsSync(sessionsPath)) {
+                return await conn.sendMessage(from, {
+                    text: '❌ ¡Error! La carpeta *sessions* no existe.',
+                });
+            }
+
+            const files = fs.readdirSync(sessionsPath);
+
+            const unnecessaryFiles = files.filter((file) => file !== 'creds.json');
+
+            if (unnecessaryFiles.length === 0) {
+                return await conn.sendMessage(from, {
+                    text: '✅ *No se encontraron archivos innecesarios* para borrar. ¡Todo en orden!',
+                });
+            }
+
+            unnecessaryFiles.forEach((file) => {
+                fs.unlinkSync(path.join(sessionsPath, file));
             });
 
-            // Confirmación de la eliminación
-            m.reply('✅ Archivos eliminados, excepto el importante `creds.json`. 🗑️');
+            await conn.sendMessage(from, {
+                text: `🗑️ *Sesiones eliminadas con éxito*:\n${unnecessaryFiles.map(file => `- ${file}`).join('\n')}\n\n¡Todo listo para *${botname}*! 🤖✨`,
+            });
 
-            // Mensaje adicional con retraso
-            setTimeout(() => {
-                m.reply('👋 ¿Hola? ¿Puedes verme?');
-            }, 1000);
-        });
-    }
+            await conn.sendMessage(from, {
+                text: '*Hola, puedes verme.*',
+            });
+        } catch (err) {
+            await conn.sendMessage(from, {
+                text: '❌ Ocurrió un error al intentar eliminar las sesiones. Por favor, intenta de nuevo.',
+            });
+        }
+    },
 };
