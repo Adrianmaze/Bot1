@@ -7,7 +7,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     m.reply('⚠️ *_Solicitud enviada exitosamente, será revisada y respondida rápidamente dependiendo del ( comando )._*\n\n *_( El uso inapropiado para molestar o sabotear ocaciona ban inmediato. )_*')
 }
 handler.help = ['sgcmd']
-handler.tags = ['info']
+handler.tags = ['main']
 handler.command = ['sugerencia', 'mejora', 'sgcmd']
 
 export default handler
