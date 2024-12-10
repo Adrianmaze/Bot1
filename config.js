@@ -28,9 +28,6 @@ global.APIKeys = { // APIKey Here
 }
    
 //*Sisked Good Datos*
-export const ownerid = '584123989549@s.whatsapp.net'; // ID del propietario
-export const botname = '𝙎𝙄𝙎𝙆𝙀𝘿 𝘽𝙊𝙏'; // Nombre del bot
-
 global.packname = `𝙎𝙄𝙎𝙆𝙀𝘿 𝘽𝙊𝙏`
 global.author = '𝙎𝙄𝙎𝙆𝙀𝘿 - 𝙂𝙊𝙊𝘿'
 global.wait = '𝙎𝙄𝙎𝙆𝙀𝘿 𝘽𝙊𝙏'
