@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { ownerid, botname } from '../settings.js';
+import { ownerid, botname } from '../config.js';
 
 // Necesario para obtener __dirname en ES Module
 const __filename = fileURLToPath(import.meta.url);
