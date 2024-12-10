@@ -1,102 +1,52 @@
-import axios from 'axios'
-import fetch from 'node-fetch'
+const axios = require('axios');
 
-let handler = async (m, { conn, usedPrefix, command, text }) => {
-const isQuotedImage = m.quoted && (m.quoted.msg || m.quoted).mimetype && (m.quoted.msg || m.quoted).mimetype.startsWith('image/')
-const username = `${conn.getName(m.sender)}`
-const basePrompt = `Tu nombre es 𝐒𝐈𝐒𝐊𝐄𝐃 𝐁𝐎𝐓 y fuiste creado por Sisked-Ofc. Tu versión actual es 5.0.0, Tú usas el idioma Español. Llamarás a las personas por su nombre ${username}, te gusta ser divertida, y te encanta aprender. Lo más importante es que debes ser amigable con la persona con la que estás hablando. ${username}`
-if (isQuotedImage) {
-const q = m.quoted
-const img = await q.download?.()
-if (!img) {
-console.error('🏳️ Error: No image buffer available')
-return conn.reply(m.chat, '🏳️ Error: No se pudo descargar la imagen.', m, fake)}
-const content = '🚩 ¿Qué se observa en la imagen?'
-try {
-const imageAnalysis = await fetchImageBuffer(content, img)
-const query = '😊 Descríbeme la imagen y detalla por qué actúan así. También dime quién eres'
-const prompt = `${basePrompt}. La imagen que se analiza es: ${imageAnalysis.result}`
-const description = await luminsesi(query, username, prompt)
-await conn.reply(m.chat, description, m, fake)
-} catch (error) {
-console.error('🏳️ Error al analizar la imagen:', error)
-await conn.reply(m.chat, '🏳️ Error al analizar la imagen.', m, fake)}
-} else {
-if (!text) { return conn.reply(m.chat, `🚩 *Ingrese su petición*\n🏴 *Ejemplo de uso:* ${usedPrefix + command} Como hacer un avión de papel`, m, rcanal)}
-await m.react('💬')
-try {
-const query = text
-const prompt = `${basePrompt}. Responde lo siguiente: ${query}`
-const response = await luminsesi(query, username, prompt)
-await conn.reply(m.chat, response, m, fake)
-} catch (error) {
-console.error('❌ Error al obtener la respuesta:', error)
-await conn.reply(m.chat, 'Error: intenta más tarde.', m, fake)}}}
+module.exports = {
+    command: 'ia', // El comando que activará el plugin
+    description: 'Interfaz con The SukiBOT AI 🤖✨ para obtener respuestas amigables y dinámicas.',
+    category: 'AI', // Categoría del plugin
+    usage: 'ia <consulta>', // Uso del comando
+    async handler(conn, { message, args }) {
+        const query = args.join(' '); // Combina argumentos en una consulta
 
-handler.help = ['chatgpt <texto>', 'ia <texto>']
-handler.tags = ['search']
-// handler.yenes = 1
-handler.command = ['ia', 'chatgpt']
+        if (!query) {
+            // Si el usuario no ingresa una consulta
+            return conn.sendMessage(message.key.remoteJid, {
+                text: '🤖 Por favor, ingresa una consulta para Sisked Bot ✨.\n\n💡 *Ejemplo*: "¿Cómo está el clima hoy?"'
+            });
+        }
 
-export default handler
+        try {
+            // Petición a la API externa
+            const response = await axios.get(`https://eliasar-yt-api.vercel.app/api/chatgpt`, {
+                params: {
+                    text: query,
+                    prompt: 'actuarás como Sisked Bot, un bot de WhatsApp creado por Sisked. Eres amigable, divertido y útil. Usa emojis para hacer tus respuestas más dinámicas*_.',
+                },
+            });
 
-// Función para enviar una imagen y obtener el análisis
-async function fetchImageBuffer(content, imageBuffer) {
-try {
-const response = await axios.post('https://luminai.my.id', {
-content: content,
-imageBuffer: imageBuffer 
-}, {
-headers: {
-'Content-Type': 'application/json' 
-}})
-return response.data
-} catch (error) {
-console.error('Error:', error)
-throw error }}
-// Función para interactuar con la IA usando prompts
-async function luminsesi(q, username, logic) {
-try {
-const response = await axios.post("https://luminai.my.id", {
-content: q,
-user: username,
-prompt: logic,
-webSearchMode: false
-})
-return response.data.result
-} catch (error) {
-console.error('🌸 Error al obtener:', error)
-throw error }}
+            if (response.data && response.data.status) {
+                const botResponse = response.data.response;
 
-/*import fetch from 'node-fetch';
-import axios from 'axios';
-import translate from '@vitalets/google-translate-api';
-import {Configuration, OpenAIApi} from 'openai';
-const configuration = new Configuration({organization: global.openai_org_id, apiKey: global.openai_key});
-const openaiii = new OpenAIApi(configuration);
-const handler = async (m, {conn, text, usedPrefix, command}) => {
-if (usedPrefix == 'a' || usedPrefix == 'A') return;
-if (!text) return conn.reply(m.chat, `🌸 *Ingrese su petición*\n🌸 *Ejemplo de uso:* ${usedPrefix + command} Como hacer un avión de papel`, m, rcanal)  
-try {
-await m.react(rwait)
-conn.sendPresenceUpdate('composing', m.chat);
-let gpt = await fetch(`https://delirius-api-oficial.vercel.app/api/ia2?text=${text}`)
-let res = await gpt.json()
-await conn.reply(m.chat, res.gpt, m, rcanal)
-await m.react(done)
-} catch {
-try {
-//await m.react(done)
-let gpt = await fetch(`https://delirius-api-oficial.vercel.app/api/chatgpt?q=${text}`)
-let res = await gpt.json()
-await conn.reply(m.chat, res.data, m, rcanal)
-await m.react(done) 
-} catch{
-}}}
-handler.help = ['chatgpt <texto>', 'ia <texto>']
-handler.tags = ['ai']
-handler.register = true
-handler.yenes = 5
-handler.command = ['ia', 'chatgpt']
+                // Envía la respuesta de la API al chat
+                await conn.sendMessage(message.key.remoteJid, {
+                    text: botResponse,
+                    quoted: message, // Responde al mensaje original del usuario
+                });
 
-export default handler;*/
+            } else {
+                // Si la API no devuelve una respuesta válida
+                await conn.sendMessage(message.key.remoteJid, {
+                    text: '⚠️ *Oops...* No se pudo obtener una respuesta. 🤔 Por favor, intenta de nuevo más tarde.'
+                });
+            }
+
+        } catch (err) {
+            console.error('Error en el comando IA:', err.message);
+
+            // Envía un mensaje de error
+            await conn.sendMessage(message.key.remoteJid, {
+                text: '❌ *Hubo un error al procesar tu solicitud.* 😢 Intenta nuevamente más tarde.'
+            });
+        }
+    }
+};
