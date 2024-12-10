@@ -102,7 +102,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       case 'nsfw':
       case 'modohorny':
       case 'modocaliente':
-      case : 'selajaloasisked':
+      case 'selajaloasisked':
        if (m.isGroup) {
          if (!(isAdmin || isOwner)) {
            global.dfail('admin', m, conn)
