@@ -1,8 +1,13 @@
-const fs = require('fs');
-const path = require('path');
-const { ownerid, botname } = require('../settings');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { ownerid, botname } from '../settings.js';
 
-module.exports = {
+// Necesario para obtener __dirname en ES Module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default {
     command: 'ds',
     handler: async (conn, { message }) => {
         const from = message.key.remoteJid;
@@ -45,6 +50,7 @@ module.exports = {
                 text: '*Hola, puedes verme.*',
             });
         } catch (err) {
+            console.error(err);
             await conn.sendMessage(from, {
                 text: '❌ Ocurrió un error al intentar eliminar las sesiones. Por favor, intenta de nuevo.',
             });
