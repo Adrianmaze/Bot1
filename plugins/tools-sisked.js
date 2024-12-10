@@ -1,7 +1,7 @@
-const axios = require('axios');
+import axios from 'axios';
 
 const handler = async (conn, { message, args }) => {
-    const query = args.join(' '); // Unir los argumentos como una consulta
+    const query = args.join(' ');
 
     if (!query) {
         return conn.sendMessage(message.key.remoteJid, {
@@ -10,7 +10,7 @@ const handler = async (conn, { message, args }) => {
     }
 
     try {
-        // Realizar la llamada a la API
+        // Llamada a la API con axios
         const response = await axios.get('https://eliasar-yt-api.vercel.app/api/chatgpt', {
             params: {
                 text: query,
@@ -21,13 +21,11 @@ const handler = async (conn, { message, args }) => {
         if (response.data && response.data.status) {
             const botResponse = response.data.response;
 
-            // Responder al usuario con el resultado de la API
             await conn.sendMessage(message.key.remoteJid, {
                 text: `💬 *Sisked Bot dice:*\n\n${botResponse}`,
-                quoted: message // Responde al mensaje original
+                quoted: message
             });
         } else {
-            // Si no se recibe una respuesta válida
             await conn.sendMessage(message.key.remoteJid, {
                 text: '⚠️ Lo siento, no pude obtener una respuesta. Inténtalo de nuevo más tarde. 🤔'
             });
@@ -36,16 +34,14 @@ const handler = async (conn, { message, args }) => {
     } catch (error) {
         console.error('Error en Sisked Bot:', error.message);
 
-        // Respuesta en caso de error
         await conn.sendMessage(message.key.remoteJid, {
             text: '❌ Hubo un error al procesar tu solicitud. Intenta de nuevo más tarde. 😢'
         });
     }
 };
 
-// Configuración del comando
-handler.command = ['sisked', 'siskedbot']; // Define los comandos que activan el bot
-handler.help = ['sisked']; // Ayuda para el comando
-handler.tags = ['tools']; // Categorías del comando
+handler.command = ['sisked', 'siskedbot'];
+handler.help = ['sisked'];
+handler.tags = ['ai', 'chatbot'];
 
-module.exports = handler;
+export default handler;
