@@ -139,6 +139,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   }
 }
 
-handler.command = /^(spotify|music)$/i; // Comando para activar el handler
+handler.help = ['spotify']
+handler.tags = ['downloader'] 
+handler.command = /^(spotify)$/i;// Comando para activar el handler
 
 export default handler;
